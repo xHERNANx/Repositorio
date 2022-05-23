@@ -11,35 +11,36 @@
 
 </head>
 <body>
-    <h1>Ejercicios</h1>
+    <h1>Trabajo práctico Programación 1 - Javascrip</h1>
 <br>
 <br>
 
-<h5>Ejercicio 1</h5>
+<h4>Ejercicio N°1</h4>
+<p>Ingresar tres valores, indicar cual es el mayor y menor.</p>
+<br>
     <label for="ej1_n1">Numero 1</label>
     <input type="number" id="ej1_n1"> 
-    
-    
+        
     <label for="ej1_n2">Numero 2</label>
     <input type="number" id="ej1_n2"> 
-
     
     <label for="ej1_n3">Numero 3</label>
     <input type="number" id="ej1_n3"> 
 
-
     <button onclick = "func_ej1()"> Comparar</button>
-
     
     <label for="mayor">Mayor</label>
     <input type="number" id="mayor">
 
     <label for="menor">Menor</label>
     <input type="number" id="menor">
+<br>
+<br>
 
-    
 
-    <h5>Ejercicio 2</h5>
+    <h4>Ejercicio N°2</h4>
+    <p>Ingresar dos valores, sumarlos y mostrar el resultado en un tercer input.</p>
+    <br>
     <label for="ej2_n1">Numero 1</label>
     <input type="number" id="ej2_n1">
 
@@ -50,7 +51,119 @@
 
     <label for="resultadoej2">Resultado</label>
     <input type="number" id="resultadoej2">
+<br>
+<br>
+
+
+    <h4>Ejercicio N°3</h4>
+    <p>Ingresar una palabra y un numero "n". Repetir la palabra "n" veces.</p>
     <br>
+    <label for ="ej3_c1">Palabra: </label>
+    <input type="text" id ="ej3_c1">
+    <label for ="ej3_c2">Numero: </label>
+    <input type="number" id ="ej3_c2">
+    <button onclick="func_ej03()">Resultado</button>
+    <label for="ej3_resultado">Resultado</label>
+    <input type="text" id ="ej3_resultado">
+<br>
+<br>
+
+
+<h4> Ejercicio 4</h4>
+<p>Realizar un conversor de temperatura: de grados centígrados a Celsius y viceversa. Deberá tener dos input y un botón.</p>
+<br>
+<label for ="ej4_c1">Grados Centígrados </label>
+<input type="number" id ="ej4_c1">
+<label for ="ej4_c2">Grados Farenheit </label>
+<input type="number" id ="ej4_c2">
+<button onclick="func_ej04()"> Convertir </button>
+<label for="ej4_resultado"> Resultado: </label>
+<input type="number" id ="ej4_resultado">
+<br>
+<br>
+
+
+<h4>Ejercicio 5</h4>
+<p> Ingresar una palabra y mostrar: "PALABRA" tiene "n" letras.</p>
+<br>
+    <label for ="ej5_c1"> Palabra: </label>
+    <input type="text" id ="ej5_c1">
+    <button onclick="func_ej05()">Contar caracteres</button>
+    <label for="ej5_resultado"> Resultado: </label>
+    <input type="text" id ="ej5_resultado">
+
+<br>
+<br>
+
+
+<h4>Ejercicio 6</h4>
+<p>Ingresar un número e indicar si es par.</p>
+<br>
+<label for ="ej6_c1"> Numero: </label>
+<input type="number" id ="ej6_c1">
+<button onclick="func_ej06()"> ¿Es par o impar?</button>
+<label for="ej6_resultado"> Resultado: </label>
+<input type="text" id ="ej6_resultado">
+<br>
+<br>
+
+<h4>Ejercicio 7</h4>
+<p>Ingresar dos números y mostrar los múltiplos de 3 comprendidos entre ambos.</p>
+<br>
+<label for ="ej7_c1"> Primer Número: </label>
+    <input type="number" id ="ej7_c1">
+    <label for ="ej7_c2"> Segundo Número: </label>
+    <input type="number" id ="ej7_c2">
+    <button onclick="func_ej07()"> Múltiplos de tres entre ellos</button>
+    <label for="ej7_resultado"> Resultado: </label>
+    <input type="text" id ="ej7_resultado">
+    <br>
+    <br>
+
+
+<h4>Ejercicio 8</h4>
+    <p>Mostrar los números primos hasta un número ingresado por el usuario.</p>
+ <br>
+    <label for ="ej8_c1"> Primer Número: </label>
+    <input type="number" id ="ej8_c1">
+    <label for ="ej8_c2"> Segundo Número: </label>
+    <input type="number" id ="ej8_c2">
+    <button onclick="func_ej08()"> Mostrar los números primos entre ellos</button>
+    <label for="ej8_resultado"> Resultado: </label>
+    <input type="text" id ="ej8_resultado">
+<br>
+<br>
+
+<h4>Ejercicio 9</h4>
+    <p>Ingresar un nombre, un apellido, una edad y un ciudad de nacimiento,  crear un párrafo y completar la siguiente frase:
+        "Mi nombre es NOMBRE APELLIDO, tengo EDAD años. Nací en la ciudad de CIUDAD."</p>
+ <br>
+        <label for="ej9_c1">Nombre </label>
+        <input type="text" id="ej9_c1">
+        <label for="ej9_c2">Apellido </label>
+        <input type="text" id="ej9_c2">
+        <label for="ej9_c3">Edad </label>
+        <input type="text" id="ej9_c3">
+        <label for="ej9_c4">Ciudad </label>
+        <input type="text" id="ej9_c4">
+        <button onclick="func_ej09()">Formar oración </button>
+ <br>
+ <br>
+
+ <h4>Ejercicio 10</h4>
+    <p>Ingresar dos valores enteros y enumerar los elementos que los separan. 
+        Ejemplo 1: 2 y 6 --> 3 , 4, 5
+        Ejemplo 2: 10 y 5 --> 9, 8, 7, 6</p>
+ <br>
+        <label for ="ej10_c1"> Primer Número: </label>
+        <input type="number" id ="ej10_c1">
+        <label for ="ej10_c2"> Segundo Número: </label>
+        <input type="number" id ="ej10_c2">
+        <button onclick="func_ej10()"> Mostrar números que los separan</button>
+    
+        <br>
+        <br>
+
     <a href="../index.html">Volver</a>
 </body>
 </html>
