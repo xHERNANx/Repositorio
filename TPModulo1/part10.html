@@ -36,6 +36,7 @@ var config = {
 
 var player;
 var stars;
+var stars2;
 var bombs;
 var platforms;
 var cursors;
@@ -51,6 +52,7 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('star2', 'assets/star2.png')
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
@@ -104,11 +106,17 @@ function create ()
 
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     stars = this.physics.add.group({
-        key: 'star',
+        key: 'star', 
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
-
+    
+    stars2 = this.physics.add.group({
+        key: 'star2', 
+        repeat: 5,
+        setXY: { x: 120, y: 0, stepX: 140 }
+    });
+    
     stars.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
@@ -125,6 +133,7 @@ function create ()
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(stars, platforms);
     this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(stars2, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     this.physics.add.overlap(player, stars, collectStar, null, this);
