@@ -1,39 +1,3 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8" />
-    <title>Phaser TP Modulo #1 - Hernán Cravero</title>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
-    <style type="text/css">
-        body {
-            margin:0;
-        }
-    </style>
-    
-</head>
-<body>
-
-<script type="text/javascript">
-
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 220 },
-            debug: false
-        }
-    },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
 var player;
 var stars;
 var stars2;
@@ -44,20 +8,18 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 
-var game = new Phaser.Game(config);
-
-function preload ()
-{
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.image('bomb', 'assets/bomb.png');
-    this.load.image('star2', 'assets/star2.png')
-    this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+export class Play extends Phaser.scene{
+    constructor(){
+        super("Play")
+    }
 }
 
-function create ()
+create ()
 {
+    // Reinicio
+    gameOver = false;
+    score = 0;
+
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
 
@@ -151,11 +113,10 @@ function create ()
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
 
-function update ()
+update ()
 {
-    if (gameOver)
-    {
-        return;
+    if (gameOver){
+        return; 
     }
 
     if (cursors.left.isDown)
@@ -183,7 +144,7 @@ function update ()
     }
 }
 
-function collectStar (player, star)
+collectStar (player, star)
 {
     star.disableBody(true, true);
 
@@ -208,14 +169,13 @@ function collectStar (player, star)
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
 
     }
 
    
 }
 
-function collectStar2 (player, star2)
+collectStar2 (player, star2)
 {
     star2.disableBody(true, true);
 
@@ -233,38 +193,26 @@ function collectStar2 (player, star2)
 
         });
     
-    
-           
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
 
     }
 
    
 }
 
-
-
-
-
-
-
-function hitBomb (player, bomb)
+hitBomb (player, bomb)
 {
     this.physics.pause();
 
     player.setTint(0xff0000);
 
     player.anims.play('turn');
+    gameOver = true; 
 
-    gameOver = true;
+    setTimeout(()=> {
+            this.scene.start(
+                "Retry", 
+                { score:score}
+            );
+        },1000) 
+
 }
-
-</script>
-
-</body>
-</html>
