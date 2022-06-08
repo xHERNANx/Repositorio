@@ -8,7 +8,7 @@ var config = {
     width: 800,
     height: 600,
 
-    scale:{
+    scale: {
         mode: Pasher.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         min: {
