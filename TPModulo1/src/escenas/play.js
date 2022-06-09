@@ -4,18 +4,16 @@ var stars2;
 var bombs;
 var platforms;
 var cursors;
-var score = 0;
-var gameOver = false;
+var score;
+var gameOver;
 var scoreText;
 
-export class Play extends Phaser.scene{
-    constructor(){
-        super("Play")
+export class Play extends Phaser.Scene {
+    constructor() {
+      super("Play");
     }
-}
-
-create ()
-{
+    
+    create () {
     // Reinicio
     gameOver = false;
     score = 0;
@@ -122,13 +120,11 @@ update ()
     if (cursors.left.isDown)
     {
         player.setVelocityX(-160);
-
         player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
     {
         player.setVelocityX(160);
-
         player.anims.play('right', true);
     }
     else
@@ -199,20 +195,18 @@ collectStar2 (player, star2)
    
 }
 
-hitBomb (player, bomb)
-{
-    this.physics.pause();
+    hitBomb(player, bomb) 
+    {
+        this.physics.pause();
 
-    player.setTint(0xff0000);
+        player.setTint(0xff0000);
 
-    player.anims.play('turn');
-    gameOver = true; 
+        player.anims.play("turn");
 
-    setTimeout(()=> {
-            this.scene.start(
-                "Retry", 
-                { score:score}
-            );
-        },1000) 
+        gameOver = true;
 
+        setTimeout(() => {
+        this.scene.start("Retry", { score: score });
+        }, 1000);
+    }
 }
