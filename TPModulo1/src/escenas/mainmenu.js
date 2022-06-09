@@ -24,7 +24,5 @@ export class MainMenu extends Phaser.Scene {
         this.scene.start("Play");
       }
     );
-  }
-
-  
+  } 
 }

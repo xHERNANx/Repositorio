@@ -26,6 +26,6 @@ var config = {
         debug: false,
       },
     },
-    scene: [Preload, MainMenu, Play, Play2, Play3, Win, Retry],
+    scene: [Preload, MainMenu, Play, Retry],
   };
   var game = new Phaser.Game(config);

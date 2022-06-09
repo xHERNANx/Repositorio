@@ -7,7 +7,7 @@ var cursors;
 var score;
 var gameOver;
 var scoreText;
-
+x
 export class Play extends Phaser.Scene {
     constructor() {
       super("Play");
