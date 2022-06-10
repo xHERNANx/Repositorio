@@ -5,8 +5,8 @@ class Button {
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({ 
-                backgroundColor: '#fff', 
-                fontSize: '50px', 
+                backgroundColor: '#ffff', 
+                fontSize: '25px', 
                 fill: '#000', 
                 fontFamily: 'Arial'
             })

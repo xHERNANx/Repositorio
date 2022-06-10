@@ -32,9 +32,9 @@ export class Play extends Phaser.Scene {
     platforms.create(400, 568, "ground").setScale(2).refreshBody();
 
     //  Now let's create some ledges
-    platforms.create(600, 400, "ground");
-    platforms.create(50, 250, "ground");
-    platforms.create(750, 220, "ground");
+    platforms.create(650, 450, 'ground');
+    platforms.create(25, 350, 'ground');
+    platforms.create(500, 165, 'ground');
 
     // The player and its settings
     player = this.physics.add.sprite(100, 450, "dude");
