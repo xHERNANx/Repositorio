@@ -44,7 +44,7 @@ var scoreText;
 var game = new Phaser.Game(config);
 
 function preload ()
-{
+{   // Este es el campo de juego
     this.load.image('sky', 'assets/sky.png');
    
     // Acá cargo las 4 plataformas que vendrian a ser las tribunas. //. 
@@ -52,24 +52,25 @@ function preload ()
     this.load.image('ground2', 'assets/platform2.png');
     this.load.image('ground3', 'assets/platform3.png');
     this.load.image('ground4', 'assets/platform4.png');
+    this.load.image('esp', 'assets/esp.png')
 
-
+    // Acá van Jugadores/pelota/zona de gol
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    
+    // Acá hay que remplazar el dude con el dude2 (player2)
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('dude2', 'assets/dude2.png', { frameWidth: 32, frameHeight: 48 });
 }
 
 function create ()
 {
-    //  A simple background for our game
+    //  Creamos campo de juego
     this.add.image(400, 300, 'sky');
 
-    //  The platforms group contains the ground and the 2 ledges we can jump on
+    //  El grupo plataforms contiene las tribunas del estadio (donde la pelota rebota)
     platforms = this.physics.add.staticGroup();
     
-
-  
-   
 
     // Coordenada de cada plataforma o tribuna
     platforms.create(400, 556, 'ground');
@@ -77,18 +78,43 @@ function create ()
     platforms.create(400,45, 'ground3');
     platforms.create(754,300, 'ground4');
 
-    // The player and its settings
+  
+  
+  
+    //Configuración esp
+    esp = this.physics.add.staticGroup ();
+  
+    // Coordenada arquero esp
+    esp.create(700,300, 'esp');
+   // Coordenada defensores esp 
+   esp.create(610,225, 'esp');
+   esp.create(610,380, 'esp');
+   // Coordenada mediocamp esp
+   esp.create(500,125, 'esp');
+   esp.create(500,212, 'esp');
+   esp.create(500,300, 'esp');
+   esp.create(500,388, 'esp');
+   esp.create(500,475, 'esp');
+   //Coordenada delanteros esp 
+   esp.create(275,175, 'esp');
+   esp.create(275,300, 'esp');
+   esp.create(275,425, 'esp');
+   
+
+
+    // Configuración del jugador
     player = this.physics.add.sprite(100, 450, 'dude');
 
-    //  Player physics properties. Give the little guy a slight bounce.
+    //Propiedades físicas del jugador. Dale al pequeño un ligero rebote.
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
+   
 
     //  Our player animations, turning, walking left and walking right.
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-        frameRate: 10,
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 8 }),
+        frameRate: 25,
         repeat: -1
     });
 
@@ -99,17 +125,18 @@ function create ()
     });
 
     this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-        frameRate: 10,
-        repeat: -1
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 8 }),
+            frameRate: 25,
+            repeat: -1
     });
 
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
+   
+   
     //  Stars = ZONA DE GOL
- 
     stars = this.physics.add.staticGroup();
    
     stars.create(80, 304, 'star');
@@ -124,14 +151,16 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
-    this.physics.add.collider(stars, platforms);
+    this.physics.add.collider(player, bombs);
     this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(bombs, esp);
 
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    //  Función collectStar: hace que la bomba al tocar zona de gol, marque.
     this.physics.add.overlap(player, stars, collectStar, null, this);
     this.physics.add.overlap(bombs, stars, collectStar, null, this);
 
-    // this.physics.add.collider(player, bombs, hitBomb, null, this);
+    // Ésto hace que el jugador muera cuando la pelota lo toca
+    this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
 
 function update ()
