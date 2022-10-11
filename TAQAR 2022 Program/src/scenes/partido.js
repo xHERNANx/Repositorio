@@ -23,6 +23,7 @@ var score2 =0;
 
 
 
+
 import Button from "../js/button.js";
 
 
@@ -38,6 +39,12 @@ export class Partido extends Phaser.Scene {
   create() 
  {
 
+    // sonido ambiente
+    let audioambiente = this.sound.add('ambiente', {loop:true});
+    audioambiente.play();
+    audioambiente.volume -= 0.10
+    
+    
     
     // crear campo de juego
     this.add.image(400, 300, "cancha");
@@ -191,9 +198,14 @@ export class Partido extends Phaser.Scene {
      
    const boton = new Button(this.cameras.main.centerX/3.50, this.cameras.main.centerY + this.cameras.main.centerY/1.10, 'Siguiente', this, () => {
         
-        this.scene.start("ResultadoFinal");
+        this.scene.start("ResultadoFinal",audioambiente.pause() );
       }
     );
+
+    const boton2 = new Button(this.cameras.main.centerX + this.cameras.main.centerX/1.50, this.cameras.main.centerY + this.cameras.main.centerY/1.10, 'Siguiente', this, () => {
+            
+        this.scene.start("ResultadoFinal2", audioambiente.pause() );
+    });
 
     gameOver = false;
 
@@ -274,6 +286,10 @@ export class Partido extends Phaser.Scene {
         pelota.disableBody(true, true);
         score += 1;
         scoreText.setText('Argentina ' + score);
+        let audiogol = this.sound.add('gol', {loop:false});
+         audiogol.play();
+        
+
         
 
         if (score >= 0){
@@ -313,6 +329,8 @@ export class Partido extends Phaser.Scene {
         pelota.disableBody(true, true);
         score2 += 1;
         scoreText2.setText(score2 + " España");
+        let audiogol = this.sound.add('gol', {loop:false});
+        audiogol.play();
         
 
         if (score2 >= 0){

@@ -18,16 +18,10 @@ export class Opciones extends Phaser.Scene {
       )
    
 
-    const boton = new Button(
-      this.cameras.main.centerX,
-      this.cameras.main.centerY + this.cameras.main.centerY / 3,
-      "Volver",
-      this,
-      () => {
-        
-        this.scene.start("MainMenu");
-      }
-    );
+      this.add.image(this.cameras.main.centerX/3.50, this.cameras.main.centerY + this.cameras.main.centerY/1.12, 'volver').setInteractive().on("pointerdown",
+      ()=>this.scene.start("MainMenu", 
+      
+      ));
 
 
 

@@ -6,9 +6,18 @@ export class Preloads extends Phaser.Scene {
     }
 
     preload() {
+
+        //botones
+        this.load.image('partido', 'public/assets/images/botones-01.png')
+        this.load.image('botonopciones', 'public/assets/images/botones-02.png')
+        this.load.image('volver', 'public/assets/images/botones-03.png')
+        this.load.image('botoncreditos', 'public/assets/images/botones-04.png')
+
         this.load.image('resultado_final', 'public/assets/images/resultado_final.png')
+        this.load.image('resultado_final2', 'public/assets/images/resultado_final2.png')
         this.load.image('mainmenu_bg', 'public/assets/images/main_menu.png')
         this.load.image('opciones', 'public/assets/images/opciones.png')
+        this.load.image('creditos', 'public/assets/images/creditos.png')
         
         
         // carga campo de juego
@@ -32,6 +41,10 @@ export class Preloads extends Phaser.Scene {
         this.load.image('pelota', 'public/assets/images/pelota.png');
         this.load.spritesheet('jugador', 'public/assets/images/jugador.png', { frameWidth: 32, frameHeight: 48 } );
         this.load.spritesheet('jugador2', 'public/assets/images/jugador2.png', { frameWidth: 32, frameHeight: 48 } );
+
+        // carga audio
+        this.load.audio('ambiente', 'public/assets/sounds/SFXS_ambiente_tribuna.ogg');
+        this.load.audio('gol', 'public/assets/sounds/SFXS_gol1.ogg')
         
       
     }
